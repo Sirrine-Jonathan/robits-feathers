@@ -11,46 +11,6 @@ client.configure(feathers.authentication());
 // Login screen
 const loginHTML = `<main class="login container">
 
-  <!-- REMOVE MESSAGE BEGIN -->
-
-  <div style="background-color: rgb(4 0 255 / 6%); padding: 15px; border-radius: 10px; margin-top: 10px;">
-    <div class="row">
-      <div class="col-6 push-3 col-3-tablet no-push-tablet text-center">
-        <img src="https://adaptable.io/img/party-popper.svg" style="max-width: 100px;" />
-      </div>
-      <div class="col-12 col-6-tablet text-center">
-        <p style="font-size: 1.5rem">
-          Your app is now running on
-        </p>
-        <img src="https://adaptable.io/img/color lockup.svg" style="max-width: 200px;" />
-      </div>
-      <div class="none inline-tablet col-3-tablet text-center">
-        <img src="https://adaptable.io/img/party-popper.svg" style="max-width: 100px;" />
-      </div>
-    </div>
-
-    <h2 class="font-900 h1 text-center">Check out Your New App!</h2>
-
-    <div class="row">
-      <p class="text-center" style="max-width: 600px; margin: auto">
-        Enter a username and password below and click &quot;Sign up and log in&quot; to use the app.  
-        You can also create a separate account in an private tab to chat with yourself.
-      </p>
-    </div>
-
-    <div class="row">
-      <p class="text-center" style="margin: auto; max-width: 600px">
-        See the <a href="https://adaptable.io/docs/starters/feathers-chat-starter#what-s-next" target="_blank">Feathers Chat Starter Guide</a> for step-by-step
-        instructions on how to deploy a code update, set up environment variables, and more!
-      </p>
-      <p class="text-center">
-        <a target="_blank" href="https://adaptable.io/docs/starters/feathers-chat-starter#what-s-next" style="display: inline-block; background: #363795; padding: 13px 30px; border-radius: 30px; color: #fff; font-size:18px;">Go to the Starter Guide</a>
-      </p>
-    </div>
-  </div>
-
-  <!-- REMOVE MESSAGE END -->
-
   <div class="row">
     <div class="col-12 col-6-tablet push-3-tablet text-center heading">
       <h1 class="font-100">Feathers Chat<br />Log in or signup</h1>
@@ -190,40 +150,6 @@ const showChat = async () => {
       $limit: 25
     }
   });
-  
-  /* REMOVE MESSAGE BEGIN */
-  const chat = document.querySelector('.chat');
-  if(chat && messages.data.length < 25) {
-    chat.innerHTML += `<div class="message flex flex-row">
-      <img src="https://adaptable.io/img/color logo.svg" alt="Adaptable.io logo" class="avatar">
-      <div class="message-wrapper">
-        <p class="message-header">
-          <span class="username font-600">${escape("Adaptable.io")}</span>
-          <span class="sent-date font-300">${moment(new Date("1/1/2022")).format('MMM Do, hh:mm:ss')}</span>
-        </p>
-        <p class="message-content font-300">
-          <img src="https://adaptable.io/img/party-popper.svg" width="20em">
-          Congratulations on logging in to your chat starter app.
-          <img src="https://adaptable.io/img/party-popper.svg" width="20em">
-          <br />
-          Wondering what's next? Go to the <a target="_blank" href="https://adaptable.io/docs/starters/feathers-chat-starter#what-s-next">starter guide</a> to find how to:
-          <ul>
-            <li>
-              <a target="_blank" href="https://adaptable.io/docs/starters/feathers-chat-starter#idea-2-deploy-a-code-update">Deploy a code update</a> by removing this message and the one from the login page.
-            </li>
-            <li>
-              <a target="_blank" href="https://adaptable.io/docs/starters/feathers-chat-starter#idea-3-configure-environment-variables">Learn how to configure environment variables</a> by enabling GitHub Authentication for this app.
-            </li>
-            <li>
-              <a target="_blank" href="https://adaptable.io/docs/starters/feathers-chat-starter#idea-4-start-building-your-app-by-adding-feathers-api-services">Make this app your own</a> by adding new API services.
-            </li>
-          </ul>
-        </p>
-      </div>
-    </div>
-    `
-  }
-  /* REMOVE MESSAGE END */
 
   // We want to show the newest message last
   messages.data.reverse().forEach(addMessage);
