@@ -10,6 +10,8 @@ module.exports = function (app) {
     avatar: { type: String },
     email: { type: String, unique: true, lowercase: true, required: true },
     githubId: { type: String },
+    googleId: { type: String },
+    profilePicture: { type: String },
     name: { type: String },
     password: { type: String },
   

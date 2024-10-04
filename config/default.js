@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 module.exports = {
   host: 'localhost',
   port: 5050,
@@ -8,14 +10,22 @@ module.exports = {
   },
   authentication: {
     oauth: {
-      redirect: 'EXTERNAL_URL',
+      redirect: process.env.NODE_ENV === 'production' ? 'EXTERNAL_URL' : 'http://localhost:5050/',
       github: {
-        key: 'GITHUB_CLIENT_ID',
-        secret: 'GITHUB_CLIENT_SECRET',
+        key: process.env.NODE_ENV === 'production' ? process.env.GITHUB_CLIENT_ID : process.env.LOCAL_GITHUB_CLIENT_ID,
+        secret: process.env.NODE_ENV === 'production' ? process.env.GITHUB_CLIENT_SECRET : process.env.LOCAL_GITHUB_CLIENT_SECRET,
         scope: [
           'user:email'
         ],
       },
+      google: {
+        key: process.env.NODE_ENV === 'production' ? process.env.GOOGLE_CLIENT_ID : process.env.LOCAL_GOOGLE_CLIENT_ID,
+        secret: process.env.NODE_ENV === 'production' ? process.env.GOOGLE_CLIENT_SECRET : process.env.LOCAL_GOOGLE_CLIENT_SECRET,
+        scope: [
+          'profile',
+          'email'
+        ],
+      }
     },
     entity: 'user',
     service: 'users',
@@ -28,7 +38,7 @@ module.exports = {
       header: {
         typ: 'access'
       },
-      audience: 'https://yourdomain.com',
+      audience: 'https://robits-feathers.adaptable.app/',
       issuer: 'feathers',
       algorithm: 'HS256',
       expiresIn: '1d'

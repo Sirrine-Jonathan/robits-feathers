@@ -34,6 +34,21 @@ async function fetchGitHubEmail(req) {
   return best.email;
 }
 
+class GoogleStrategy extends OAuthStrategy {
+  async getEntityData(profile) {
+
+    // this will set 'googleId'
+    const baseData = await super.getEntityData(profile);
+
+    // this will grab the picture and email address of the Google profile
+    return {
+      ...baseData,
+      profilePicture: profile.picture,
+      email: profile.email
+    };
+  }
+}
+
 class GitHubStrategy extends OAuthStrategy {
   async getEntityData(profile) {
     const baseData = await super.getEntityData(profile);
@@ -67,6 +82,7 @@ module.exports = app => {
   authentication.register('jwt', new JWTStrategy());
   authentication.register('local', new LocalStrategy());
   authentication.register('github', new GitHubStrategy());
+  authentication.register('google', new GoogleStrategy());
 
   app.use('/authentication', authentication);
   app.configure(expressOauth({ expressSession }));

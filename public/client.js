@@ -38,6 +38,10 @@ const loginHTML = `<main class="login container">
         <a class="button button-primary block" href="/oauth/github">
           Login with GitHub
         </a>
+
+        <a class="button button-primary block" href="/oauth/google">
+          Login with Google
+        </a>
       </form>
     </div>
   </div>
@@ -93,7 +97,7 @@ const addUser = user => {
     // Add the user to the list
     userList.innerHTML += `<li>
       <a class="block relative" href="#">
-        <img src="${user.avatar}" alt="" class="avatar">
+        <img src="${user.avatar || user.profilePicture}" alt="" class="avatar">
         <span class="absolute username">${escape(user.name || user.email)}</span>
       </a>
     </li>`;
